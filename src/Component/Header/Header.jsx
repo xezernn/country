@@ -12,13 +12,13 @@ function Header() {
             <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
                 <ul className="items-stretch hidden space-x-3 md:flex">
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Africa" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Africa</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Africa" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Africa</Link>
                     </li>
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Europe" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Europe</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Europe" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Europe</Link>
                     </li>
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Oceania" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent ">Oceania</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Oceania" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent ">Oceania</Link>
                     </li>
                 </ul>
                 <Link to={'/all'} rel="noopener noreferrer" aria-label="Back to homepage" className="flex items-center p-2">
@@ -29,13 +29,13 @@ function Header() {
                 </Link>
                 <ul className="items-stretch hidden space-x-3 md:flex">
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Asia" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Asia</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Asia" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Asia</Link>
                     </li>
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Americas" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Americas</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Americas" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Americas</Link>
                     </li>
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Antarctic" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Antarctic</Link>
+                        <Link rel="noopener noreferrer" to="all/subReg/Antarctic" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Antarctic</Link>
                     </li>
                 </ul>
                 <button onClick={() => setMobileMenuOpen(true)} title="Button" type="button" className="p-4 md:hidden">
@@ -44,7 +44,7 @@ function Header() {
                     </svg>
                 </button>
             </div>
-            <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+            {/* <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-10" />
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto dark:bg-gray-800 dark:text-gray-100 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
@@ -82,7 +82,7 @@ function Header() {
                         </div>
                     </div>
                 </Dialog.Panel>
-            </Dialog>
+            </Dialog> */}
 
         </header>
     )

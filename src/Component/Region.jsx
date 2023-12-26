@@ -7,7 +7,6 @@ import { nanoid } from 'nanoid'
 function Region() {
     const data = useContext(Data)
     const { region } = useParams()
-    const [count, setCount] = useState(10)
     return (
         <section className="dark:bg-gray-800 dark:text-gray-100 text-center">
             <h1 className=" mx-auto font-bold leadi sm:text-5xl">{region} qitəsindəki bütün ölkələr <br />
