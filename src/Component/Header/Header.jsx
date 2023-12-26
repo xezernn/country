@@ -18,7 +18,7 @@ function Header() {
                         <Link rel="noopener noreferrer" to="/Europe" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Europe</Link>
                     </li>
                     <li className="flex">
-                        <Link rel="noopener noreferrer" to="/Oceania" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400">Oceania</Link>
+                        <Link rel="noopener noreferrer" to="/Oceania" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent ">Oceania</Link>
                     </li>
                 </ul>
                 <Link to={'/all'} rel="noopener noreferrer" aria-label="Back to homepage" className="flex items-center p-2">

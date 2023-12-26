@@ -19,13 +19,16 @@ const Random = React.memo(() => {
                 <p>Yerləşdiyi qitə: {randomData?.region}</p>
                 <p>{ randomData?.name.common}-in əhalisi: {randomData?.population}</p>
 			
-                {randomData?.borders !== undefined &&
+                {randomData?.borders !== undefined ?
                     <p>Onun qonşuları:
                         {
-                            randomData?.borders?.map(item => <Link to={item} key={nanoid()} rel="noopener noreferrer" className="inline-block px-2 py-1 text-sm font-semibold rounded-md mx-2 dark:bg-violet-400 dark:text-gray-900">{item}</Link>)
+                            randomData?.borders?.map(item => <Link to={item} key={nanoid()} rel="noopener noreferrer" className="inline-block px-2 py-1 text-sm font-semibold rounded-md my-1 mx-2 dark:bg-violet-400 dark:text-gray-900">{item}</Link>)
                         }
 
-                    </p>}
+                    </p>
+                    :
+                    <p>Ada ölkəsidir, yani qonşusu yoxdur!</p>
+                }
             </div>
         </Link>
     )

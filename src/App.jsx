@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Component/Header/Header'
 import Main from './Component/Main/Main'
 import Footer from './Component/Footer/Footer'
@@ -9,16 +9,19 @@ import Region from './Component/Region'
 
 function App() {
   const navigate = useNavigate();
+  
   useEffect(() => {
     navigate("/all");
   }, []);
+
+  
   return (
     <>
       <Header />
       <Routes>
-          <Route path='/all' element={<Main />} />
-          <Route path='/all/:id' element={<Element />} />
-          <Route path='/:region' element={<Region />} />
+        <Route path='/all' element={<Main />} />
+        <Route path='/all/:id' element={<Element />} />
+        <Route path='/:region' element={<Region />} />
       </Routes>
       <Footer />
     </>

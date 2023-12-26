@@ -22,13 +22,13 @@ function Footer() {
                 </div>
                 <ul className="flex flex-wrap items-center pl-3 mt-0 space-x-4 sm:space-x-8">
                     <li>
-                        <Link  href="#">Instagram</Link>
+                        <a arget='_blanc' href="https://www.instagram.com/xezernn/">Instagram</a>
                     </li>
                     <li>
-                        <Link  href="#">Facebook</Link>
+                        <Link href="#">Facebook</Link>
                     </li>
                     <li>
-                        <Link  href="#">Twitter</Link>
+                        <a target='_blanc'  href="https://twitter.com/xezern0">Twitter</a>
                     </li>
                 </ul>
             </div>

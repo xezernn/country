@@ -43,10 +43,14 @@ function Element() {
                                 <b>Əhalisi</b>: {country?.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                             </p>
                             <p className="mb-2 leading-relaxed">
-                                <b>Saat qurşağı</b>: {country?.timezones}
+                                <b>Saat qurşağı</b>: {country?.timezones.join(", ")}
                             </p>
-                            <div className="flex justify-center">
-                                {country?.borders !== undefined && country?.borders.map(item => <Link to={`/all/${item}`} key={nanoid()} className="inline-flex mx-1 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">{item}</Link>)}
+                            <div className="flex justify-start gap-[8px] flex-wrap">
+                                {country?.borders !== undefined ?
+                                 country?.borders.map(item => <Link to={`/all/${item}`} key={nanoid()} className="inline-flex  text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">{item}</Link>) 
+                                :
+                                <p>Ada ölkəsidir, yani qonşusu yoxdur!</p>
+                                }
                             </div>
                         </div>
                         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
