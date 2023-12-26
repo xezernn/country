@@ -5,22 +5,21 @@ import Footer from './Component/Footer/Footer'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Element from './Component/Element/Element'
 import Region from './Component/Region'
+import ErrorPage from './Component/ErrorPage'
 
 function App() {
   const navigate = useNavigate();
-  
-  // useEffect(() => {
-  //   navigate("/all");
-  // }, []);
 
-  
+
+
   return (
     <>
       <Header />
       <Routes>
-        <Route path='/all' element={<Main />} />
+        <Route index element={<Main />} />
         <Route path='/all/:id' element={<Element />} />
         <Route path='/all/subReg/:region' element={<Region />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
       <Footer />
     </>

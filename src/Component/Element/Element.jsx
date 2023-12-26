@@ -3,20 +3,41 @@ import { Data } from '../../Context/DataContext'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { nanoid } from 'nanoid'
 import Loading from '../Main/Loading'
+import ErrorPage from '../ErrorPage'
 
 function Element() {
-    const data = useContext(Data)
-    const { id } = useParams()
-    const [country, setCountry] = useState([])
-    const [load, setLoad] = useState(true)
+    const data = useContext(Data);
+    const { id } = useParams();
+    const [country, setCountry] = useState([]);
+    const [load, setLoad] = useState(true);
+    const [error, setError] = useState(null);
     useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/alpha/${id}`)
-            .then(res => res?.json())
-            .then(data => setCountry(data[0]))
-    }, [id])
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setCountry(data[0]);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoad(false);
+            }
+        };
+
+        fetchData();
+    }, [id]);
     useEffect(() => { setLoad(false) }, [country])
+    if (error) {
+        return <ErrorPage />;
+    }
 
     return (
+        // <></>
         <>
             {load && <div className='bg-gray-900 flex h-[71vh] w-full justify-center items-center' ><Loading /></div>}
             {country.length !== 0 &&
@@ -31,7 +52,7 @@ function Element() {
                                 {country?.languages && " " + Object.values(country?.languages).join(", ")}
                             </p>
                             <p className="mb-2 leading-relaxed">
-                                <b>Əskinazları</b>: { country?.currencies !== undefined ?  ` ${Object.values(country?.currencies)[0].name} və onun qısaltması ${Object.keys(country?.currencies)[0]} ` : ""}
+                                <b>Əskinazları</b>: {country?.currencies !== undefined ? ` ${Object.values(country?.currencies)[0].name} və onun qısaltması ${Object.keys(country?.currencies)[0]} ` : ""}
                             </p>
                             <p className="mb-2 leading-relaxed">
                                 <b>Regionu</b>: {country?.region}
@@ -47,9 +68,9 @@ function Element() {
                             </p>
                             <div className="flex justify-start gap-[8px] flex-wrap">
                                 {country?.borders !== undefined ?
-                                 country?.borders.map(item => <Link to={`/all/${item}`} key={nanoid()} className="inline-flex  text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">{item}</Link>) 
-                                :
-                                <p>Ada ölkəsidir, yani qonşusu yoxdur!</p>
+                                    country?.borders.map(item => <Link to={`/all/${item}`} key={nanoid()} className="inline-flex  text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">{item}</Link>)
+                                    :
+                                    <p>Ada ölkəsidir, yani qonşusu yoxdur!</p>
                                 }
                             </div>
                         </div>
