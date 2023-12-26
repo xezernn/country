@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Data } from '../../Context/DataContext'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { nanoid } from 'nanoid'
-import Loading from '../Main/Loading'
-import ErrorPage from '../ErrorPage'
+import React, { useContext, useEffect, useState } from 'react';
+import { Data } from '../../Context/DataContext';
+import { Link, useParams } from 'react-router-dom';
+import { nanoid } from 'nanoid';
+import Loading from '../Main/Loading';
+import ErrorPage from '../ErrorPage';
 
 function Element() {
     const data = useContext(Data);
@@ -11,15 +11,13 @@ function Element() {
     const [country, setCountry] = useState([]);
     const [load, setLoad] = useState(true);
     const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
+                if (!response.ok) { throw new Error(`HTTP xətası! Status: ${response.status}`) }
                 const data = await response.json();
                 setCountry(data[0]);
             } catch (error) {
@@ -31,13 +29,12 @@ function Element() {
 
         fetchData();
     }, [id]);
-    useEffect(() => { setLoad(false) }, [country])
+
     if (error) {
         return <ErrorPage />;
     }
 
     return (
-        // <></>
         <>
             {load && <div className='bg-gray-900 flex h-[71vh] w-full justify-center items-center' ><Loading /></div>}
             {country.length !== 0 &&
