@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import Loading from '../Main/Loading';
 import ErrorPage from '../ErrorPage';
+import { Theme } from '../../Context/ThemeContext';
 
 function Element() {
     const data = useContext(Data);
@@ -11,7 +12,7 @@ function Element() {
     const [country, setCountry] = useState([]);
     const [load, setLoad] = useState(true);
     const [error, setError] = useState(null);
-
+    const {dark} =useContext(Theme)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,18 +31,32 @@ function Element() {
         fetchData();
     }, [id]);
 
+    // useEffect(() => {
+    //     try {
+    //         fetch("https://restcountries.com/v3.1/alpha/${id}")
+    //             .then(res => {
+    //                 if (!res.ok) { console.error(`HTTP xətası! Status: ${res.status}`) }
+    //                 res.json()
+    //             }).then(data => setCountry(data[0]))
+    //     } catch {
+    //         setError(error);
+    //     } finally {
+    //         setLoad(false);
+    //     }
+    // }, [])
+
     if (error) {
         return <ErrorPage />;
     }
 
     return (
         <>
-            {load && <div className='bg-gray-900 flex h-[71vh] w-full justify-center items-center' ><Loading /></div>}
+            {load && <div className={' flex h-[71vh] w-full justify-center items-center ' +(dark ? "bg-gray-100 text-black" : "dark:bg-gray-900")} ><Loading /></div>}
             {country.length !== 0 &&
-                <section className="text-gray-400 bg-gray-900 body-font">
+                <section className={dark ? "bg-gray-200 text-black" : "text-gray-400 bg-gray-900 body-font"}>
                     <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
                         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                            <h1 className="title-font sm:text-4xl text-3xl mb-2 font-medium text-white">{country?.name?.common}
+                            <h1 className={"title-font sm:text-4xl text-3xl mb-2 font-medium " + (dark ? "text-black" : "text-white")}>{country?.name?.common}
                                 <p className='text-lg'>  Paytaxtı:  {country?.capital}</p>
                             </h1>
                             <p className="mb-2 leading-relaxed">

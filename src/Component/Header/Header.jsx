@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon, } from '@heroicons/react/24/outline'
+import { Theme } from '../../Context/ThemeContext'
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+    const { dark, setDark } = useContext(Theme)
     return (
-        <header className="p-4 dark:bg-gray-800 dark:text-gray-100">
+        <header className={"p-4 " + (dark ? "bg-gray-100 text-black" : "dark:bg-gray-800")}>
             <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
                 <ul className="items-stretch hidden space-x-3 md:flex">
                     <li className="flex">
@@ -37,6 +38,19 @@ function Header() {
                     <li className="flex">
                         <Link rel="noopener noreferrer" to="all/subReg/Antarctic" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent">Antarctic</Link>
                     </li>
+                    <li className="flex">
+                        <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer ">
+                            <span>Dark</span>
+                            <span className="relative">
+                                <input id="Toggle1" type="checkbox" onClick={()=>{setDark(!dark)}} className="hidden peer" />
+                                <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
+                                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-800"></div>
+                            </span>
+                            <span>Light</span>
+                        </label>
+
+                    </li>
+
                 </ul>
                 <button onClick={() => setMobileMenuOpen(true)} title="Button" type="button" className="p-4 md:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
