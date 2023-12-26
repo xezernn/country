@@ -6,7 +6,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import ErrorPage from './Component/ErrorPage'
 import Element from './Component/Element/Element'
 import Region from './Component/Region'
-import Headerr from './Component/Header/Headerr'
 
 function App() {
   const navigate = useNavigate();
@@ -15,14 +14,13 @@ function App() {
   }, []);
   return (
     <>
-    <Headerr/>
-      {/* <Header />
+      <Header />
       <Routes>
           <Route path='/all' element={<Main />} />
           <Route path='/all/:id' element={<Element />} />
           <Route path='/:region' element={<Region />} />
       </Routes>
-      <Footer /> */}
+      <Footer />
     </>
   )
 }

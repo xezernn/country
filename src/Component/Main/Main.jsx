@@ -22,7 +22,7 @@ function Main() {
                     <h1 className="text-4xl font-bold leadi sm:text-5xl">Ölkə axtarışına <br />
                         <span className="dark:text-violet-400"> Xoş gəlmisiniz</span>
                     </h1>
-                    <p className="px-8 mt-8 mb-12 text-lg">Aşağıdakı linkdən bütün ölkələri axtara və onlar haqqında ətraflı məlumat tapa bilərsiniz!</p>
+                    <p className="px-8 mt-8 mb-12 text-lg">Aşağıdan bütün ölkələri axtara və onlar haqqında ətraflı məlumat tapa bilərsiniz!</p>
                     <div className="flex flex-wrap justify-center">
                         <button onClick={() => { setBlock(!block) }} className="px-8 py-3 m-2 text-lg font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Axtarmağa Başla!  </button>
                         <button className="px-8 py-3 m-2 text-lg border rounded dark:text-gray-50 dark:border-gray-700">Biz kimik?</button>
