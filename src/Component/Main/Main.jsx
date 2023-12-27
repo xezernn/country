@@ -11,7 +11,7 @@ function Main() {
     const [count, setCount] = useState(12)
     const [search, setSearch] = useState("")
     const data = useContext(Data)
-    const { color, dark } = useContext(Theme)
+    const { color, dark} = useContext(Theme)
     function handleButtonClick() {
         window.scrollTo({
             top: block ? 585 : 625,
@@ -51,7 +51,7 @@ function Main() {
                         }
                     </div>
                     <div className="flex justify-center">
-                        {search === "" && <button disabled={count >= data.length} type="button" onClick={() => { setCount(count + 9) }} className={"px-6 py-3 text-sm rounded-md hover:underline  disabled:bg-slate-400 disabled:text-black disabled:cursor-no-drop "+ (dark ? "bg-indigo-500 text-white" : "dark:bg-gray-900 dark:text-gray-400")}>Daha çox ölkə...</button>
+                        {search === "" && <button disabled={count >= data.length} type="button" onClick={() => { setCount(count + 9) }} className={"px-6 py-3 text-sm rounded-md hover:underline  disabled:bg-slate-400 disabled:text-black disabled:cursor-no-drop " + (dark ? "bg-indigo-500 text-white" : "dark:bg-gray-900 dark:text-gray-400")}>Daha çox ölkə...</button>
                         }</div>
                 </div>
             </section>
