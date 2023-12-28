@@ -40,14 +40,14 @@ function Header() {
                     </li>
                 </ul>
                 <button onClick={() => setMobileMenuOpen(true)} title="Button" type="button" className="p-4 md:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className={"w-6 h-6 " + (!dark ? "dark:text-gray-100" : "dark:text-gray-800")}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
                 <div className="fixed inset-0 z-10" />
-                <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto dark:bg-gray-800 dark:text-gray-100 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                <Dialog.Panel className={"fixed inset-y-0 right-0 z-10 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 " + (dark ? "bg-gray-100 text-black" : "dark:bg-gray-800 dark:text-gray-100")}>
                     <div className="flex items-center justify-between">
                         <Link to={''} rel="noopener noreferrer" aria-label="Back to homepage" className="flex items-center p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" className="w-8 h-8 dark:text-violet-400">
@@ -78,17 +78,22 @@ function Header() {
                                 <Link onClick={() => setMobileMenuOpen(false)} rel="noopener noreferrer" to="all/subReg/Americas" className="flex text-2xl items-center px-4 -mb-1 border-b-2 dark:border-transparent">Americas</Link>
 
                                 <Link onClick={() => setMobileMenuOpen(false)} rel="noopener noreferrer" to="all/subReg/Antarctic" className="flex text-2xl items-center px-4 -mb-1 border-b-2 dark:border-transparent">Antarctic</Link>
-
+                                <div className='ml-3'>
+                                    <button type="button" onClick={() => { setDark(!dark) }} className="hs-dropdown-toggle hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-gray-500">
+                                        <svg className={"hs-dark-mode-active:hidden w-8 h-8 " + (dark ? "block" : "hidden")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+                                        <svg className={"hs-dark-mode-active:block w-8 h-8 " + (dark ? "hidden" : "block")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 8a2 2 0 1 0 4 4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </Dialog.Panel>
             </Dialog>
 
-            <div className='absolute top-[50%] right-[5%] translate-y-[-50%]  truncate '>
-                <button type="button" onClick={() => { setDark(!dark) }}  className="hs-dropdown-toggle hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-gray-500">
-                    <svg className={"hs-dark-mode-active:hidden w-8 h-8 " + (dark ? "block": "hidden")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
-                    <svg className={"hs-dark-mode-active:block w-8 h-8 " + (dark ? "hidden": "block")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 8a2 2 0 1 0 4 4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+            <div className='absolute top-[50%] right-[5%] translate-y-[-50%] hidden md:block  truncate '>
+                <button type="button" onClick={() => { setDark(!dark) }} className="hs-dropdown-toggle hs-dark-mode group flex items-center text-gray-600 hover:text-blue-600 font-medium dark:text-gray-400 dark:hover:text-gray-500">
+                    <svg className={"hs-dark-mode-active:hidden w-8 h-8 " + (dark ? "block" : "hidden")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+                    <svg className={"hs-dark-mode-active:block w-8 h-8 " + (dark ? "hidden" : "block")} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 8a2 2 0 1 0 4 4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
                 </button>
             </div>
 
