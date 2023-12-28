@@ -20,7 +20,6 @@ function Main() {
             behavior: 'smooth',
         });
     };
-    console.log(count, begCount )
     return (
         <main className={color}>
             <section className={`pt-8 `}>
