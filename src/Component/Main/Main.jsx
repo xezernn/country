@@ -57,6 +57,8 @@ function Main() {
                         } */}
                         {search === "" &&
                             <Pagination
+                            pageSizeOptions={[]}
+                            defaultPageSize={12}
                             onChange={(e) => { setCount(e * 12), setBegCount((e-1)*12) }}
                             total={data.length}
                           />
