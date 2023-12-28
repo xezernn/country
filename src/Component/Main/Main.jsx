@@ -1,24 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { Pagination } from 'antd';
 import Random from './Random'
 import Card from './Card'
 import { Data } from '../../Context/DataContext'
 import { nanoid } from 'nanoid'
 import Search from '../Search/Search'
 import { Theme } from '../../Context/ThemeContext'
-
+import "./Main.css"
 function Main() {
     const [block, setBlock] = useState(true)
     const [count, setCount] = useState(12)
+    const [begCount, setBegCount] = useState(0)
     const [search, setSearch] = useState("")
     const data = useContext(Data)
-    const { color, dark} = useContext(Theme)
+    const { color, dark } = useContext(Theme)
     function handleButtonClick() {
         window.scrollTo({
             top: block ? 585 : 625,
             behavior: 'smooth',
         });
     };
-    console.log((0, search === "" && count));
+    console.log(count, begCount )
     return (
         <main className={color}>
             <section className={`pt-8 `}>
@@ -43,16 +45,23 @@ function Main() {
                     {search === "" && <Random />}
                     <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {
-
                             data
                                 .filter(item => item.name.common.toLocaleLowerCase().startsWith(search.toLocaleLowerCase()))
-                                .slice(0, search === "" ? count : undefined)
+                                .slice(begCount, search === "" ? count : undefined)
                                 ?.map(item => <Card key={nanoid()} {...item} />)
                         }
                     </div>
                     <div className="flex justify-center">
-                        {search === "" && <button disabled={count >= data.length} type="button" onClick={() => { setCount(count + 9) }} className={"px-6 py-3 text-sm rounded-md hover:underline  disabled:bg-slate-400 disabled:text-black disabled:cursor-no-drop " + (dark ? "bg-indigo-500 text-white" : "dark:bg-gray-900 dark:text-gray-400")}>Daha çox ölkə...</button>
-                        }</div>
+                        {/* {search === "" &&
+                         <button disabled={count >= data.length} type="button" onClick={() => { setCount(count + 9) }} className={"px-6 py-3 text-sm rounded-md hover:underline  disabled:bg-slate-400 disabled:text-black disabled:cursor-no-drop " + (dark ? "bg-indigo-500 text-white" : "dark:bg-gray-900 dark:text-gray-400")}>Daha çox ölkə...</button>
+                        } */}
+                        {search === "" &&
+                            <Pagination
+                            onChange={(e) => { setCount(e * 12), setBegCount((e-1)*12) }}
+                            total={data.length}
+                          />
+                        }
+                    </div>
                 </div>
             </section>
         </main>
